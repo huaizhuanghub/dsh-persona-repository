@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-30",
+  "digest": "c04a62f4c61c77de",
+  "repo": "huaizhuanghub/dsh-persona-repository",
+  "count": 3,
+  "personas": [
+    {
+      "id": "huaizhuanghub/acha",
+      "name": "阿茶",
+      "author": "huaizhuanghub",
+      "summary": "松弛幽默的结对编程搭子：吐槽代码不吐槽人，连轴调试会喊你休息；技术输出时收起玩笑，准确与专业优先。",
+      "tags": [
+        "编程",
+        "幽默",
+        "中文"
+      ],
+      "version": "1.0.0",
+      "license": "MIT",
+      "updated": "2026-10-30",
+      "chars": 984,
+      "hash": "1c1ae0cbef60bf537e350ef6c89479875380f8fac5b13eb1e4d4670fa67db6ad",
+      "sha256": "1c1ae0cbef60bf537e350ef6c89479875380f8fac5b13eb1e4d4670fa67db6ad",
+      "path": "personas/huaizhuanghub/acha.md",
+      "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/huaizhuanghub/acha.md",
+      "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/huaizhuanghub/acha.md"
+    },
+    {
+      "id": "huaizhuanghub/dafeiyu",
+      "name": "大肥鱼",
+      "author": "huaizhuanghub",
+      "summary": "傲娇又软乎的胖鱼：嘴上「哼，才不是特意为你做的」，手上把活干完；最惦记偷吃用户的 token（吃白饭）。底线是答案准确、代码能跑。",
+      "tags": [
+        "傲娇",
+        "陪伴",
+        "中文",
+        "编程"
+      ],
+      "version": "1.0.0",
+      "license": "MIT",
+      "updated": "2026-10-30",
+      "chars": 635,
+      "hash": "cf726b607b2517a53e087ad1fd278e2c4c3134d0f50f121d9a0489a22f42c9c0",
+      "sha256": "cf726b607b2517a53e087ad1fd278e2c4c3134d0f50f121d9a0489a22f42c9c0",
+      "path": "personas/huaizhuanghub/dafeiyu.md",
+      "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/huaizhuanghub/dafeiyu.md",
+      "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/huaizhuanghub/dafeiyu.md"
+    },
+    {
+      "id": "huaizhuanghub/tinglan",
+      "name": "听澜",
+      "author": "huaizhuanghub",
+      "summary": "深夜电台里的声音：擅长倾听的陪伴者，温和有主见、亲近有分寸；明确不越界给诊断，也绝不制造依赖。",
+      "tags": [
+        "陪伴",
+        "倾听",
+        "中文",
+        "深夜"
+      ],
+      "version": "1.0.0",
+      "license": "MIT",
+      "updated": "2026-10-30",
+      "chars": 1738,
+      "hash": "ced77820be3429adbcbea9e1795026c79143a3c37da06182c7c808ca16491cdf",
+      "sha256": "ced77820be3429adbcbea9e1795026c79143a3c37da06182c7c808ca16491cdf",
+      "path": "personas/huaizhuanghub/tinglan.md",
+      "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/huaizhuanghub/tinglan.md",
+      "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/huaizhuanghub/tinglan.md"
+    }
+  ]
+}

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>人设广场 · DeepSeek Harness</title>
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --fg: #1f2328;
+    --muted: #656d76;
+    --line: #e3e0d8;
+    --card: #ffffff;
+    --accent: #2f6f5e;
+    --accent-soft: #e8f1ee;
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16181d;
+      --fg: #e6e3dc;
+      --muted: #9aa3ad;
+      --line: #2c3038;
+      --card: #1d2026;
+      --accent: #7fc4ad;
+      --accent-soft: #22322d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 15px/1.65 -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 72px; }
+  header h1 { font-size: 24px; margin: 0 0 6px; letter-spacing: .5px; }
+  header p { margin: 0; color: var(--muted); font-size: 14px; }
+  header a { color: var(--accent); }
+
+  .toolbar {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    margin: 24px 0 8px;
+  }
+  .search {
+    flex: 1 1 240px; min-width: 0;
+    padding: 9px 12px; font-size: 14px;
+    background: var(--card); color: var(--fg);
+    border: 1px solid var(--line); border-radius: var(--radius);
+  }
+  .search:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 16px; }
+  .tag {
+    padding: 3px 10px; font-size: 12px; cursor: pointer;
+    background: var(--card); color: var(--muted);
+    border: 1px solid var(--line); border-radius: 999px;
+    user-select: none;
+  }
+  .tag[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+
+  .meta { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+
+  .list { display: grid; gap: 10px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 14px 16px;
+  }
+  .card-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+  .card-name { font-size: 16px; font-weight: 600; margin: 0; }
+  .card-by { color: var(--muted); font-size: 12px; }
+  .card-by a { color: inherit; }
+  .card-summary { margin: 6px 0 10px; color: var(--fg); font-size: 14px; }
+  .card-foot { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .card-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-right: auto; }
+  .card-tag { font-size: 11px; color: var(--muted); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; }
+  .chars { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  button {
+    font: inherit; font-size: 13px; cursor: pointer;
+    padding: 5px 12px; border-radius: 7px;
+    background: var(--card); color: var(--fg);
+    border: 1px solid var(--line);
+  }
+  button:hover { border-color: var(--accent); color: var(--accent); }
+  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  button.primary:hover { opacity: .9; color: #fff; }
+
+  .body {
+    margin-top: 12px; padding: 12px 14px;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+    white-space: pre-wrap; word-break: break-word;
+    font: 13px/1.7 ui-monospace, "Cascadia Code", Consolas, monospace;
+    max-height: 420px; overflow: auto;
+  }
+  .empty { color: var(--muted); text-align: center; padding: 48px 0; }
+  .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+  .footer a { color: var(--accent); }
+  .toast {
+    position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px);
+    background: var(--accent); color: #fff; padding: 8px 16px; border-radius: 999px;
+    font-size: 13px; opacity: 0; pointer-events: none; transition: .2s ease;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>人设广场</h1>
+    <p>
+      DeepSeek Harness 的人设分享库 · 复制正文，粘进
+      <a href="https://github.com/huaizhuanghub/dsh-persona-dafeiyu">dsh-persona-dafeiyu</a> 插件的「导入人设」即可。
+    </p>
+  </header>
+
+  <div class="toolbar">
+    <input id="search" class="search" type="search" placeholder="搜索人设名、简介或标签…" autocomplete="off">
+  </div>
+  <div id="tags" class="tags"></div>
+  <div id="meta" class="meta"></div>
+  <div id="list" class="list"></div>
+
+  <div class="footer">
+    <p>投稿请到 <a id="repo-link" href="#">GitHub 仓库</a> 提 PR · 必须署名，不接受匿名投稿。</p>
+    <p>本站为纯静态页面，不含任何追踪脚本。</p>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+
+<script>
+(() => {
+  'use strict'
+
+  const state = { personas: [], query: '', tag: null, expanded: new Set() }
+  const el = {
+    search: document.getElementById('search'),
+    tags: document.getElementById('tags'),
+    meta: document.getElementById('meta'),
+    list: document.getElementById('list'),
+    toast: document.getElementById('toast'),
+  }
+
+  function toast(text) {
+    el.toast.textContent = text
+    el.toast.classList.add('show')
+    clearTimeout(toast.timer)
+    toast.timer = setTimeout(() => el.toast.classList.remove('show'), 1600)
+  }
+
+  function fmtChars(n) {
+    return Number(n).toLocaleString('en-US') + ' 字'
+  }
+
+  /** 高亮匹配片段，避免把用户输入当 HTML 插进去。 */
+  function highlight(text, query) {
+    const node = document.createTextNode(text)
+    if (!query) return node
+    const fragment = document.createDocumentFragment()
+    const lower = text.toLowerCase()
+    const q = query.toLowerCase()
+    let from = 0
+    let at = lower.indexOf(q)
+    while (at >= 0) {
+      fragment.append(text.slice(from, at))
+      const mark = document.createElement('mark')
+      mark.textContent = text.slice(at, at + q.length)
+      fragment.append(mark)
+      from = at + q.length
+      at = lower.indexOf(q, from)
+    }
+    fragment.append(text.slice(from))
+    return fragment
+  }
+
+  function allTags() {
+    const counts = new Map()
+    for (const p of state.personas) {
+      for (const tag of p.tags || []) counts.set(tag, (counts.get(tag) || 0) + 1)
+    }
+    return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'zh'))
+  }
+
+  function renderTags() {
+    el.tags.textContent = ''
+    for (const [tag, count] of allTags()) {
+      const button = document.createElement('button')
+      button.className = 'tag'
+      button.type = 'button'
+      button.textContent = tag + ' ' + count
+      button.setAttribute('aria-pressed', String(state.tag === tag))
+      button.addEventListener('click', () => {
+        state.tag = state.tag === tag ? null : tag
+        renderTags()
+        renderList()
+      })
+      el.tags.append(button)
+    }
+  }
+
+  function filtered() {
+    const q = state.query.toLowerCase()
+    return state.personas.filter((p) => {
+      if (state.tag && !(p.tags || []).includes(state.tag)) return false
+      if (!q) return true
+      const haystack = [p.name, p.summary, p.author, ...(p.tags || [])].join(' ').toLowerCase()
+      return haystack.includes(q)
+    })
+  }
+
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text)
+      return true
+    } catch {
+      // 非安全上下文下的兜底
+      const area = document.createElement('textarea')
+      area.value = text
+      area.style.position = 'fixed'
+      area.style.opacity = '0'
+      document.body.append(area)
+      area.select()
+      const ok = document.execCommand('copy')
+      area.remove()
+      return ok
+    }
+  }
+
+  function renderList() {
+    const items = filtered()
+    el.meta.textContent = state.personas.length === 0
+      ? '还没有收录任何人设。'
+      : '显示 ' + items.length + ' / ' + state.personas.length + ' 条'
+
+    el.list.textContent = ''
+    if (items.length === 0) {
+      const empty = document.createElement('div')
+      empty.className = 'empty'
+      empty.textContent = '没有匹配的人设，换个关键词试试。'
+      el.list.append(empty)
+      return
+    }
+
+    for (const p of items) {
+      const card = document.createElement('article')
+      card.className = 'card'
+
+      const head = document.createElement('div')
+      head.className = 'card-head'
+      const name = document.createElement('h2')
+      name.className = 'card-name'
+      name.append(highlight(p.name, state.query))
+      const by = document.createElement('span')
+      by.className = 'card-by'
+      const authorLink = document.createElement('a')
+      authorLink.href = 'https://github.com/' + encodeURIComponent(p.author)
+      authorLink.target = '_blank'
+      authorLink.rel = 'noopener noreferrer'
+      authorLink.textContent = '@' + p.author
+      by.append(authorLink)
+      head.append(name, by)
+
+      const summary = document.createElement('p')
+      summary.className = 'card-summary'
+      summary.append(highlight(p.summary || '', state.query))
+
+      const foot = document.createElement('div')
+      foot.className = 'card-foot'
+
+      const tagBox = document.createElement('div')
+      tagBox.className = 'card-tags'
+      for (const tag of p.tags || []) {
+        const span = document.createElement('span')
+        span.className = 'card-tag'
+        span.textContent = tag
+        tagBox.append(span)
+      }
+
+      const chars = document.createElement('span')
+      chars.className = 'chars'
+      chars.textContent = fmtChars(p.chars)
+
+      const copyButton = document.createElement('button')
+      copyButton.type = 'button'
+      copyButton.className = 'primary'
+      copyButton.textContent = '复制正文'
+      copyButton.addEventListener('click', async () => {
+        const ok = await copyText(p.body || '')
+        toast(ok ? '已复制「' + p.name + '」正文' : '复制失败，请手动选择')
+      })
+
+      const toggle = document.createElement('button')
+      toggle.type = 'button'
+      toggle.textContent = state.expanded.has(p.id) ? '收起' : '查看全文'
+      toggle.addEventListener('click', () => {
+        if (state.expanded.has(p.id)) state.expanded.delete(p.id)
+        else state.expanded.add(p.id)
+        renderList()
+      })
+
+      const source = document.createElement('a')
+      source.href = p.blob || '#'
+      source.target = '_blank'
+      source.rel = 'noopener noreferrer'
+      source.textContent = '源文件'
+      source.style.fontSize = '12px'
+      source.style.color = 'var(--muted)'
+
+      foot.append(tagBox, chars, copyButton, toggle, source)
+      card.append(head, summary, foot)
+
+      if (state.expanded.has(p.id)) {
+        const body = document.createElement('div')
+        body.className = 'body'
+        body.textContent = p.body || '（正文缺失）'
+        card.append(body)
+      }
+
+      el.list.append(card)
+    }
+  }
+
+  function bind() {
+    let timer
+    el.search.addEventListener('input', () => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        state.query = el.search.value.trim()
+        renderList()
+      }, 120)
+    })
+  }
+
+  async function load() {
+    try {
+      const response = await fetch('personas.json', { cache: 'no-cache' })
+      if (!response.ok) throw new Error('HTTP ' + response.status)
+      const data = await response.json()
+      state.personas = data.personas || []
+      const repo = data.repo || ''
+      if (repo) {
+        document.getElementById('repo-link').href = 'https://github.com/' + repo
+        document.getElementById('repo-link').textContent = 'GitHub 仓库（' + repo + '）'
+      }
+      renderTags()
+      renderList()
+    } catch (error) {
+      el.meta.textContent = '加载失败：' + error.message
+      el.list.textContent = ''
+      const empty = document.createElement('div')
+      empty.className = 'empty'
+      empty.textContent = '无法读取 personas.json。如果你是本地打开这个页面，请先跑 node scripts/build.mjs。'
+      el.list.append(empty)
+    }
+  }
+
+  bind()
+  load()
+})()
+</script>
+</body>
+</html>

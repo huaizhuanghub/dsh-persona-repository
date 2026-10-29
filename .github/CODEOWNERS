@@ -1,0 +1,10 @@
+# 默认规则：任何改动都需要维护者审核
+*                               @huaizhuanghub
+
+# 人设文件：维护者可以批
+/personas/                      @huaizhuanghub
+
+# 构建脚本、CI、站点：只有仓库所有者能批
+/scripts/                       @huaizhuanghub
+/.github/                       @huaizhuanghub
+/site/                          @huaizhuanghub

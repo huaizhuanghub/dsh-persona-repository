@@ -1,0 +1,81 @@
+name: validate
+
+on:
+  pull_request:
+    paths:
+      - 'personas/**'
+      - 'scripts/**'
+      - '.github/workflows/**'
+  push:
+    branches: [main]
+    paths:
+      - 'personas/**'
+      - 'scripts/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 校验人设格式
+        id: validate
+        run: node scripts/validate.mjs
+        continue-on-error: true
+
+      - name: 检查生成物是否最新
+        id: build
+        run: node scripts/build.mjs --check
+        continue-on-error: true
+
+      - name: 检查站点数据契约
+        id: site
+        run: node scripts/check-site.mjs
+        continue-on-error: true
+
+      - name: 汇总结果
+        run: |
+          echo "validate=${{ steps.validate.outcome }}" >> "$GITHUB_OUTPUT"
+          if [ "${{ steps.validate.outcome }}" != "success" ] || [ "${{ steps.build.outcome }}" != "success" ] || [ "${{ steps.site.outcome }}" != "success" ]; then
+            echo "有检查未通过，见上面的日志。" 
+          fi
+
+      - name: 在 PR 里留言
+        if: github.event_name == 'pull_request' && (steps.validate.outcome != 'success' || steps.build.outcome != 'success' || steps.site.outcome != 'success')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = [
+              '### 自动检查没通过',
+              '',
+              `- 人设格式检查：\`${{ steps.validate.outcome }}\``,
+              `- 生成物一致性：\`${{ steps.build.outcome }}\``,
+              `- 站点数据契约：\`${{ steps.site.outcome }}\``,
+              '',
+              '常见修法：',
+              '',
+              '1. **格式问题** —— 对照 `personas/_template.md` 检查 frontmatter 六个字段是否齐全，`author` 是否和目录名一致。',
+              '2. **生成物过期** —— 在本地跑 `node scripts/build.mjs`，把改动一起提交上来。',
+              '',
+              '改完推到这个分支，检查会自动重跑。',
+            ].join('\n')
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            })
+
+      - name: 最终判定
+        if: steps.validate.outcome != 'success' || steps.build.outcome != 'success' || steps.site.outcome != 'success'
+        run: |
+          echo "检查未通过，阻止合并。"
+          exit 1

@@ -1,0 +1,59 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'personas/**'
+      - 'site/**'
+      - 'scripts/build.mjs'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 重新生成数据
+        run: |
+          export PAGES_BASE="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          node scripts/build.mjs
+          node scripts/build.mjs --check
+
+      - name: 准备站点文件
+        run: |
+          mkdir -p _site
+          cp site/index.html _site/
+          cp site/personas.json _site/
+          ls -la _site
+
+      - uses: actions/configure-pages@v4
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

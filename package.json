@@ -1,0 +1,17 @@
+{
+  "name": "dsh-persona-repository",
+  "version": "0.1.0",
+  "private": true,
+  "description": "人设广场：DeepSeek Harness 的人设分享仓库",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check",
+    "validate": "node scripts/validate.mjs",
+    "check-site": "node scripts/check-site.mjs",
+    "test:guards": "node scripts/test-guards.mjs",
+    "test": "node scripts/build.mjs --check && node scripts/validate.mjs && node scripts/check-site.mjs && node scripts/test-guards.mjs",
+    "verify:site": "node scripts/verify-site.mjs"
+  },
+  "license": "MIT"
+}
