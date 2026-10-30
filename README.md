@@ -1,5 +1,7 @@
 # 人设广场
 
+**[→ 在线浏览：https://huaizhuanghub.github.io/dsh-persona-repository/](https://huaizhuanghub.github.io/dsh-persona-repository/)**
+
 > DeepSeek Harness（`dsh`）的人设分享仓库。
 > 每个人设都是一个 Markdown 文件，正文可以直接粘进 [`dsh-persona-dafeiyu`](https://github.com/huaizhuanghub/dsh-persona-dafeiyu) 插件的「导入人设」里使用。
 
@@ -22,16 +24,20 @@
 
 ## 怎么用这些人设
 
-### 方式一：手动导入（现在就能用）
+### 方式一：在网页里挑（推荐）
+
+打开 **[huaizhuanghub.github.io/dsh-persona-repository](https://huaizhuanghub.github.io/dsh-persona-repository/)**：
+
+- 支持**搜索**（人设名 / 简介 / 标签）和**标签筛选**
+- 点「查看全文」看完整提示词，点「复制正文」一键复制
+- 拿到的正文粘进 DSH 设置页 →「人设」→「导入人设」即可
+
+### 方式二：直接在 GitHub 上手动导入
 
 1. 点开上面目录里的任意一条人设，看到正文全文
 2. 全选复制
 3. 打开 DSH 设置页 →「人设」→「导入人设」
 4. 填上名字，粘贴正文，点「导入」
-
-### 方式二：从网页广场浏览
-
-如果 `site/` 已发布到 GitHub Pages，可以直接打开站点，支持搜索、标签筛选、一键复制。
 
 ---
 
