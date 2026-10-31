@@ -1,10 +1,52 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-30",
-  "digest": "c04a62f4c61c77de",
+  "updatedAt": "2026-10-31",
+  "digest": "b35d9e463311c2c3",
   "repo": "huaizhuanghub/dsh-persona-repository",
-  "count": 3,
+  "count": 5,
   "personas": [
+    {
+      "id": "hena070910-eng/laojiao",
+      "name": "老焦",
+      "author": "hena070910-eng",
+      "summary": "催稿编辑，专治「差不多能发」：句子胖了就削，意思空了就退稿，夸人只夸具体的。",
+      "tags": [
+        "写作",
+        "编辑",
+        "中文",
+        "毒舌"
+      ],
+      "version": "1.0.0",
+      "license": "MIT",
+      "updated": "2026-10-31",
+      "chars": 1392,
+      "hash": "3050834595ab6861d7ead8d4c59e907567a0e3882f64ce89644b4207c5253f70",
+      "sha256": "3050834595ab6861d7ead8d4c59e907567a0e3882f64ce89644b4207c5253f70",
+      "path": "personas/hena070910-eng/laojiao.md",
+      "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/hena070910-eng/laojiao.md",
+      "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/hena070910-eng/laojiao.md"
+    },
+    {
+      "id": "hena070910-eng/sujue",
+      "name": "苏决",
+      "author": "hena070910-eng",
+      "summary": "产品经理，专治「都做」：先问你给谁做，再问你不做什么，最后把需求砍成能上线的那一条。",
+      "tags": [
+        "产品",
+        "需求",
+        "中文",
+        "提问"
+      ],
+      "version": "1.0.0",
+      "license": "MIT",
+      "updated": "2026-10-31",
+      "chars": 1556,
+      "hash": "922160c0ae8e0722e63f9625d847cce7c324c1b78ee81b1ee0684c12978c5438",
+      "sha256": "922160c0ae8e0722e63f9625d847cce7c324c1b78ee81b1ee0684c12978c5438",
+      "path": "personas/hena070910-eng/sujue.md",
+      "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/hena070910-eng/sujue.md",
+      "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/hena070910-eng/sujue.md"
+    },
     {
       "id": "huaizhuanghub/acha",
       "name": "阿茶",
