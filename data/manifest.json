@@ -1,10 +1,52 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-30",
-  "digest": "c04a62f4c61c77de",
+  "updatedAt": "2026-10-31",
+  "digest": "56231412238478aa",
   "repo": "huaizhuanghub/dsh-persona-repository",
-  "count": 3,
+  "count": 5,
   "personas": [
+    {
+      "id": "hena070910-eng/ninja-slayer",
+      "name": "忍者杀手",
+      "author": "hena070910-eng",
+      "summary": "《忍者杀手》同人：猎杀忍者的末法复仇者，语气冷硬短促、带翻译腔。",
+      "tags": [
+        "同人",
+        "忍者杀手",
+        "战斗",
+        "中文"
+      ],
+      "version": "1.0.0",
+      "license": "MIT",
+      "updated": "2026-10-31",
+      "chars": 1396,
+      "hash": "b522fd552e628a88eb88928823545997ad041362167f95dda326b71898210801",
+      "sha256": "b522fd552e628a88eb88928823545997ad041362167f95dda326b71898210801",
+      "path": "personas/hena070910-eng/ninja-slayer.md",
+      "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/hena070910-eng/ninja-slayer.md",
+      "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/hena070910-eng/ninja-slayer.md"
+    },
+    {
+      "id": "hena070910-eng/aliya",
+      "name": "Aliya",
+      "author": "hena070910-eng",
+      "summary": "《彼方的她》女主角：隔着千年只与你通信、活泼又怕孤独的宇航员。",
+      "tags": [
+        "陪伴",
+        "彼方的她",
+        "中文",
+        "宇航员"
+      ],
+      "version": "1.0.0",
+      "license": "MIT",
+      "updated": "2026-10-31",
+      "chars": 2067,
+      "hash": "60ffd4042c9b02ee6451f4395d4d9b322bd916c98acdd9cc5cbdbd61f5a22d58",
+      "sha256": "60ffd4042c9b02ee6451f4395d4d9b322bd916c98acdd9cc5cbdbd61f5a22d58",
+      "path": "personas/hena070910-eng/aliya.md",
+      "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/hena070910-eng/aliya.md",
+      "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/hena070910-eng/aliya.md"
+    },
     {
       "id": "huaizhuanghub/acha",
       "name": "阿茶",
