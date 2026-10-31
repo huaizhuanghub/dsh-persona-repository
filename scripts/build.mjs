@@ -28,12 +28,33 @@ const README = path.join(ROOT, 'README.md')
 const README_BEGIN = '<!-- BEGIN:personas'
 const README_END = '<!-- END:personas -->'
 
-/** 仓库标识：CI 里由 GitHub 提供，本地回落到占位符。 */
-const REPO = process.env.GITHUB_REPOSITORY || 'OWNER/REPO'
+/** 仓库标识：CI 里由 GitHub 提供；本地回落成真实仓库名，别让占位符进产物。 */
+const REPO = process.env.GITHUB_REPOSITORY || 'huaizhuanghub/dsh-persona-repository'
 /** Pages 站点根地址。 */
 const PAGES_BASE = process.env.PAGES_BASE || `https://${REPO.split('/')[0]}.github.io/${REPO.split('/')[1]}/`
-/** 固定分支名，raw 链接用。 */
-const BRANCH = process.env.GITHUB_REF_NAME || 'main'
+
+/**
+ * blob / raw 链接里用的分支名。
+ *
+ * pull_request 事件里 `GITHUB_REF_NAME` 是 `4/merge` 这类合成 ref，拿它拼链接会得到
+ * `.../blob/4/merge/...`，而仓库里提交的生成物写的是 `main`，于是 `--check` 每次都在
+ * PR 上误报「生成物不一致」——与投稿内容无关，所有 PR 一律被打回。
+ *
+ * 所以：优先取 PR 的目标分支（`GITHUB_BASE_REF`），其次取看起来像真实分支名的 ref，
+ * 最后回落 `main`。push 到 main 时 `GITHUB_REF_NAME=main`，结果不变。
+ */
+function resolveBranch() {
+  const base = process.env.GITHUB_BASE_REF
+  if (base) return base
+
+  const ref = process.env.GITHUB_REF_NAME || ''
+  // 合成 ref 一定含 `/`（`4/merge`、`merge_group/...`），含 `/` 就不是分支名
+  if (/^[A-Za-z0-9._-]+$/.test(ref)) return ref
+
+  return 'main'
+}
+
+const BRANCH = resolveBranch()
 
 const REQUIRED_FIELDS = ['name', 'author', 'summary', 'tags', 'version', 'license']
 

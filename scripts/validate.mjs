@@ -46,19 +46,39 @@ function walk(dir, out = []) {
   return out
 }
 
+/** 人设文件名规则：只允许小写字母、数字、连字符（与 build.mjs 的 slug 规则一致）。 */
+const SLUG_RE = /^[a-z0-9][a-z0-9-]*$/
+
 function checkPersonaFiles() {
-  const files = walk(PERSONA_DIR).filter((f) => f.endsWith('.md'))
-  if (files.length === 0) {
-    fail('personas/ 下没有任何 .md 文件')
+  // 注意：这里**不能**先按 .md 过滤。投稿最常见的翻车方式就是把稿子存成
+  // `personas/<author>/某个人设名`（没有后缀），build.mjs 会静默跳过它，
+  // 校验也跟着跳过，于是 CI 全绿、人设却根本没进广场。
+  const allFiles = walk(PERSONA_DIR)
+  if (allFiles.length === 0) {
+    fail('personas/ 下没有任何文件')
     return
   }
 
-  for (const file of files) {
+  let mdCount = 0
+
+  for (const file of allFiles) {
     const rel = path.relative(ROOT, file).replaceAll('\\', '/')
     const base = path.basename(file)
 
-    // 跳过模板和以下划线开头的文件
+    // 模板和以下划线开头的文件整体豁免（_template.md 之类）
     if (base.startsWith('_')) continue
+
+    // 后缀检查要放在最前面：没有 .md 的文件连 frontmatter 都读不出意义
+    if (!base.endsWith('.md')) {
+      fail(`${rel}: 人设文件必须以 .md 结尾（当前文件名是「${base}」）。请重命名为 <slug>.md，slug 只允许小写字母、数字、连字符。`)
+      continue
+    }
+
+    mdCount++
+    const slug = base.slice(0, -3)
+    if (!SLUG_RE.test(slug)) {
+      fail(`${rel}: 文件名「${slug}」只允许小写字母、数字、连字符（不要中文、大写、下划线或空格）`)
+    }
 
     const raw = fs.readFileSync(file, 'utf8')
     if (!raw.startsWith('---')) {
@@ -76,6 +96,10 @@ function checkPersonaFiles() {
     if (parts.length !== 3) {
       fail(`${rel}: 路径必须是 personas/<author>/<slug>.md，不能多一层也不能少一层`)
     }
+  }
+
+  if (mdCount === 0) {
+    fail('personas/ 下没有任何 .md 人设文件')
   }
 }
 

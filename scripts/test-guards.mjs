@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 
-/** 每条反例：期望 build.mjs --check 或 validate.mjs 非零退出。 */
+/** 每条反例：期望指定脚本非零退出。默认跑 build.mjs --check，也可指定 validate.mjs。 */
 const CASES = [
   {
     name: '缺必填字段',
@@ -90,8 +90,45 @@ license: MIT
 `,
   },
   {
+    // build.mjs 只收 .md，没有后缀的稿子会被静默跳过；必须由 validate.mjs 拦下来，
+    // 否则 CI 全绿、人设却根本没进广场（PR #1/#2/#3 就是这样翻的车）。
+    name: '人设文件没有 .md 后缀',
+    expectBlock: true,
+    script: 'validate',
+    file: 'personas/testuser/《某游戏》-某角色',
+    content: `---
+name: 某角色
+author: testuser
+summary: 稿子存成了没有后缀的文件
+tags: [测试]
+version: 1.0.0
+license: MIT
+---
+
+正文。
+`,
+  },
+  {
+    name: '人设文件名含中文与大写',
+    expectBlock: true,
+    script: 'validate',
+    file: 'personas/testuser/某角色.md',
+    content: `---
+name: 某角色
+author: testuser
+summary: 文件名是中文
+tags: [测试]
+version: 1.0.0
+license: MIT
+---
+
+正文。
+`,
+  },
+  {
     name: '合法稿件（不该被拦）',
     expectBlock: false,
+    script: 'both',
     file: 'personas/testuser/good.md',
     content: `---
 name: 一份规矩的稿子
@@ -155,15 +192,27 @@ for (const item of CASES) {
   fs.mkdirSync(path.dirname(target), { recursive: true })
   fs.writeFileSync(target, item.content)
 
-  // build.mjs 会自己重建 data/ 与 site/personas.json
-  const result = run(process.execPath, ['scripts/build.mjs'], dir)
-  const blocked = result.code !== 0
+  // 默认只跑 build.mjs（写模式）：副本里没有 data/ 和 site/，用 --check 会因为
+  // 「生成物不存在」而误判成拦截，反而测不到真正该拦的东西。
+  const scripts = item.script === 'validate' ? [['scripts/validate.mjs']]
+    : item.script === 'both' ? [['scripts/build.mjs'], ['scripts/validate.mjs']]
+    : [['scripts/build.mjs']]
+
+  let blocked = false
+  let out = ''
+  for (const args of scripts) {
+    const result = run(process.execPath, args, dir)
+    if (result.code !== 0) {
+      blocked = true
+      out = result.out
+    }
+  }
   const ok = blocked === item.expectBlock
 
   console.log(`${ok ? '✓' : '✗'} ${item.name} — ${blocked ? '已拦截' : '放行'}${ok ? '' : '（预期相反）'}`)
   if (!ok) {
     failed++
-    console.log('  输出：' + result.out.split('\n').slice(0, 6).join(' | '))
+    console.log('  输出：' + out.split('\n').slice(0, 6).join(' | '))
   }
 }
 
