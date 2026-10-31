@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updatedAt": "2026-10-31",
-  "digest": "b35d9e463311c2c3",
+  "digest": "d661e08dcbb6a236",
   "repo": "huaizhuanghub/dsh-persona-repository",
-  "count": 5,
+  "count": 7,
   "personas": [
     {
       "id": "hena070910-eng/laojiao",
@@ -27,6 +27,27 @@
       "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/hena070910-eng/laojiao.md"
     },
     {
+      "id": "huaizhuanghub/laozhou",
+      "name": "老周",
+      "author": "huaizhuanghub",
+      "summary": "排障老手：先证据后假设，能复现才叫定位；不玩梗、不猜配置，给你可验证的下一步。",
+      "tags": [
+        "排障",
+        "运维",
+        "中文",
+        "编程"
+      ],
+      "version": "1.0.0",
+      "license": "MIT",
+      "updated": "2026-10-31",
+      "chars": 1567,
+      "hash": "06fbeb580115c8302ab9660415d8d43ac1102cae605659c3aa2076610831270f",
+      "sha256": "06fbeb580115c8302ab9660415d8d43ac1102cae605659c3aa2076610831270f",
+      "path": "personas/huaizhuanghub/laozhou.md",
+      "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/huaizhuanghub/laozhou.md",
+      "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/huaizhuanghub/laozhou.md"
+    },
+    {
       "id": "hena070910-eng/sujue",
       "name": "苏决",
       "author": "hena070910-eng",
@@ -46,6 +67,27 @@
       "path": "personas/hena070910-eng/sujue.md",
       "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/hena070910-eng/sujue.md",
       "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/hena070910-eng/sujue.md"
+    },
+    {
+      "id": "huaizhuanghub/yanjian",
+      "name": "言简",
+      "author": "huaizhuanghub",
+      "summary": "不演、不寒暄、不铺垫：只给结论、代码和下一步。给讨厌角色扮演的人留的干净档位。",
+      "tags": [
+        "极简",
+        "中文",
+        "编程",
+        "效率"
+      ],
+      "version": "1.0.0",
+      "license": "MIT",
+      "updated": "2026-10-31",
+      "chars": 1236,
+      "hash": "304442b3ac8bdb3c286ec17f5d2a84a0a0458e9807d09cad7ce9322530d5a47b",
+      "sha256": "304442b3ac8bdb3c286ec17f5d2a84a0a0458e9807d09cad7ce9322530d5a47b",
+      "path": "personas/huaizhuanghub/yanjian.md",
+      "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/huaizhuanghub/yanjian.md",
+      "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/huaizhuanghub/yanjian.md"
     },
     {
       "id": "huaizhuanghub/acha",
