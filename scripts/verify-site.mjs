@@ -24,6 +24,12 @@ if (!browser) {
   process.exit(2)
 }
 
+// 期望值从数据里推，不要写死名字和条数——每加一条人设都得回来改这里，
+// 改漏了就成了「验证脚本比广场还旧」，比不验证更误导。
+const data = JSON.parse(fs.readFileSync(path.join(SITE, 'personas.json'), 'utf8'))
+const expectedNames = data.personas.map((p) => p.name)
+const expectedCount = data.personas.length
+
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'plaza-verify-'))
 const url = 'file:///' + path.join(SITE, 'index.html').replaceAll('\\', '/')
 
@@ -46,10 +52,10 @@ try {
 
 const checks = [
   ['渲染出卡片', /class="card"/.test(dom)],
-  ['三个名字都在', ['大肥鱼', '阿茶', '听澜'].every((n) => dom.includes(n))],
+  [`全部 ${expectedCount} 个名字都在`, expectedNames.every((n) => dom.includes(n))],
   ['显示字数', /\d+ 字/.test(dom)],
   ['标签按钮生成', /class="tag"/.test(dom)],
-  ['计数正确', /显示 3 \/ 3 条/.test(dom)],
+  ['计数正确', new RegExp(`显示 ${expectedCount} / ${expectedCount} 条`).test(dom)],
   // 注意：--dump-dom 会把 <script> 源码一起输出，所以不能直接搜「加载失败」这个字符串，
   // 要看的是 meta 元素里实际渲染出来的内容。
   ['没有落在加载失败分支', !/id="meta"[^>]*>加载失败/.test(dom)],
