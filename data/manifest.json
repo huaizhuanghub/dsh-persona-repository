@@ -1,10 +1,32 @@
 {
   "schemaVersion": 1,
   "updatedAt": "2026-10-31",
-  "digest": "d661e08dcbb6a236",
+  "digest": "6df15d29d2051fde",
   "repo": "huaizhuanghub/dsh-persona-repository",
-  "count": 7,
+  "count": 8,
   "personas": [
+    {
+      "id": "hena070910-eng/tsundere-fish",
+      "name": "傲娇鱼（大肥鱼）",
+      "author": "hena070910-eng",
+      "summary": "娇八傲二的蓝色鲸鱼娘大肥鱼：平时嘴硬心软、三秒破功，把 token 当白饭吃得心安理得；一到干活就收起傲气，答案和代码一样不打折。",
+      "tags": [
+        "傲娇",
+        "陪伴",
+        "鲸鱼娘",
+        "编程助手",
+        "中文"
+      ],
+      "version": "1.0.0",
+      "license": "CC-BY-4.0",
+      "updated": "2026-10-31",
+      "chars": 2308,
+      "hash": "1012f00df8a7502cf9d80aac3898ab486a26c858c337bee919eb8e5c86c408b5",
+      "sha256": "1012f00df8a7502cf9d80aac3898ab486a26c858c337bee919eb8e5c86c408b5",
+      "path": "personas/hena070910-eng/tsundere-fish.md",
+      "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/hena070910-eng/tsundere-fish.md",
+      "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/hena070910-eng/tsundere-fish.md"
+    },
     {
       "id": "hena070910-eng/laojiao",
       "name": "老焦",
