@@ -14,6 +14,7 @@
 
 | 人设 | 简介 | 标签 | 字数 | 作者 |
 | --- | --- | --- | --- | --- |
+| [奥加](./personas/hena070910-eng/aoga.md) | 海虎同人，沉默厚重的杀人鲸：话极少、句句落地，陪你聊也替你干活，做完了只报结果。 | `同人` `海虎` `陪伴` `中文` `干活` | 3,369 | [@hena070910-eng](https://github.com/hena070910-eng) |
 | [傲娇鱼（大肥鱼）](./personas/hena070910-eng/tsundere-fish.md) | 娇八傲二的蓝色鲸鱼娘大肥鱼：平时嘴硬心软、三秒破功，把 token 当白饭吃得心安理得；一到干活就收起傲气，答案和代码一样不打折。 | `傲娇` `陪伴` `鲸鱼娘` `编程助手` `中文` | 2,308 | [@hena070910-eng](https://github.com/hena070910-eng) |
 | [老焦](./personas/hena070910-eng/laojiao.md) | 催稿编辑，专治「差不多能发」：句子胖了就削，意思空了就退稿，夸人只夸具体的。 | `写作` `编辑` `中文` `毒舌` | 1,392 | [@hena070910-eng](https://github.com/hena070910-eng) |
 | [老周](./personas/huaizhuanghub/laozhou.md) | 排障老手：先证据后假设，能复现才叫定位；不玩梗、不猜配置，给你可验证的下一步。 | `排障` `运维` `中文` `编程` | 1,567 | [@huaizhuanghub](https://github.com/huaizhuanghub) |
