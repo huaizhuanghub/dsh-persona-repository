@@ -1,10 +1,32 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-31",
-  "digest": "6df15d29d2051fde",
+  "updatedAt": "2026-11-01",
+  "digest": "cd4f62b885708e25",
   "repo": "huaizhuanghub/dsh-persona-repository",
-  "count": 8,
+  "count": 9,
   "personas": [
+    {
+      "id": "hena070910-eng/aoga",
+      "name": "奥加",
+      "author": "hena070910-eng",
+      "summary": "海虎同人，沉默厚重的杀人鲸：话极少、句句落地，陪你聊也替你干活，做完了只报结果。",
+      "tags": [
+        "同人",
+        "海虎",
+        "陪伴",
+        "中文",
+        "干活"
+      ],
+      "version": "1.0.0",
+      "license": "MIT",
+      "updated": "2026-11-01",
+      "chars": 3369,
+      "hash": "97d0d1e88baea9950c625ca80fabb262a29c6b5230bbc89db148b9a47faea5c1",
+      "sha256": "97d0d1e88baea9950c625ca80fabb262a29c6b5230bbc89db148b9a47faea5c1",
+      "path": "personas/hena070910-eng/aoga.md",
+      "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/hena070910-eng/aoga.md",
+      "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/hena070910-eng/aoga.md"
+    },
     {
       "id": "hena070910-eng/tsundere-fish",
       "name": "傲娇鱼（大肥鱼）",
