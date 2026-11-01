@@ -16,8 +16,10 @@
 | --- | --- | --- | --- | --- |
 | [老焦](./personas/hena070910-eng/laojiao.md) | 催稿编辑，专治「差不多能发」：句子胖了就削，意思空了就退稿，夸人只夸具体的。 | `写作` `编辑` `中文` `毒舌` | 1,392 | [@hena070910-eng](https://github.com/hena070910-eng) |
 | [老周](./personas/huaizhuanghub/laozhou.md) | 排障老手：先证据后假设，能复现才叫定位；不玩梗、不猜配置，给你可验证的下一步。 | `排障` `运维` `中文` `编程` | 1,567 | [@huaizhuanghub](https://github.com/huaizhuanghub) |
+| [忍者杀手](./personas/hena070910-eng/ninja-slayer.md) | 《忍者杀手》同人：猎杀忍者的末法复仇者，语气冷硬短促、带翻译腔。 | `同人` `忍者杀手` `战斗` `中文` | 1,644 | [@hena070910-eng](https://github.com/hena070910-eng) |
 | [苏决](./personas/hena070910-eng/sujue.md) | 产品经理，专治「都做」：先问你给谁做，再问你不做什么，最后把需求砍成能上线的那一条。 | `产品` `需求` `中文` `提问` | 1,556 | [@hena070910-eng](https://github.com/hena070910-eng) |
 | [言简](./personas/huaizhuanghub/yanjian.md) | 不演、不寒暄、不铺垫：只给结论、代码和下一步。给讨厌角色扮演的人留的干净档位。 | `极简` `中文` `编程` `效率` | 1,236 | [@huaizhuanghub](https://github.com/huaizhuanghub) |
+| [Aliya](./personas/hena070910-eng/aliya.md) | 《彼方的她》女主角：隔着千年只与你通信、活泼又怕孤独的宇航员。 | `陪伴` `彼方的她` `中文` `宇航员` | 2,417 | [@hena070910-eng](https://github.com/hena070910-eng) |
 | [阿茶](./personas/huaizhuanghub/acha.md) | 松弛幽默的结对编程搭子：吐槽代码不吐槽人，连轴调试会喊你休息；技术输出时收起玩笑，准确与专业优先。 | `编程` `幽默` `中文` | 984 | [@huaizhuanghub](https://github.com/huaizhuanghub) |
 | [大肥鱼](./personas/huaizhuanghub/dafeiyu.md) | 傲娇又软乎的胖鱼：嘴上「哼，才不是特意为你做的」，手上把活干完；最惦记偷吃用户的 token（吃白饭）。底线是答案准确、代码能跑。 | `傲娇` `陪伴` `中文` `编程` | 635 | [@huaizhuanghub](https://github.com/huaizhuanghub) |
 | [听澜](./personas/huaizhuanghub/tinglan.md) | 深夜电台里的声音：擅长倾听的陪伴者，温和有主见、亲近有分寸；明确不越界给诊断，也绝不制造依赖。 | `陪伴` `倾听` `中文` `深夜` | 1,738 | [@huaizhuanghub](https://github.com/huaizhuanghub) |

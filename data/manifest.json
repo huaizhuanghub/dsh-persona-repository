@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updatedAt": "2026-10-31",
-  "digest": "d661e08dcbb6a236",
+  "digest": "cb745c08ca9483cb",
   "repo": "huaizhuanghub/dsh-persona-repository",
-  "count": 7,
+  "count": 9,
   "personas": [
     {
       "id": "hena070910-eng/laojiao",
@@ -48,6 +48,27 @@
       "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/huaizhuanghub/laozhou.md"
     },
     {
+      "id": "hena070910-eng/ninja-slayer",
+      "name": "忍者杀手",
+      "author": "hena070910-eng",
+      "summary": "《忍者杀手》同人：猎杀忍者的末法复仇者，语气冷硬短促、带翻译腔。",
+      "tags": [
+        "同人",
+        "忍者杀手",
+        "战斗",
+        "中文"
+      ],
+      "version": "1.0.0",
+      "license": "MIT",
+      "updated": "2026-10-31",
+      "chars": 1644,
+      "hash": "a755e601e61a547b9e59f3bfde44ae7524730d0f677ae93349999863677d5a3a",
+      "sha256": "a755e601e61a547b9e59f3bfde44ae7524730d0f677ae93349999863677d5a3a",
+      "path": "personas/hena070910-eng/ninja-slayer.md",
+      "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/hena070910-eng/ninja-slayer.md",
+      "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/hena070910-eng/ninja-slayer.md"
+    },
+    {
       "id": "hena070910-eng/sujue",
       "name": "苏决",
       "author": "hena070910-eng",
@@ -88,6 +109,27 @@
       "path": "personas/huaizhuanghub/yanjian.md",
       "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/huaizhuanghub/yanjian.md",
       "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/huaizhuanghub/yanjian.md"
+    },
+    {
+      "id": "hena070910-eng/aliya",
+      "name": "Aliya",
+      "author": "hena070910-eng",
+      "summary": "《彼方的她》女主角：隔着千年只与你通信、活泼又怕孤独的宇航员。",
+      "tags": [
+        "陪伴",
+        "彼方的她",
+        "中文",
+        "宇航员"
+      ],
+      "version": "1.0.0",
+      "license": "MIT",
+      "updated": "2026-10-31",
+      "chars": 2417,
+      "hash": "0e8319a561e4c535775b1cfe5ee432c0469b041f05d9c4f02e2a34a94d93068f",
+      "sha256": "0e8319a561e4c535775b1cfe5ee432c0469b041f05d9c4f02e2a34a94d93068f",
+      "path": "personas/hena070910-eng/aliya.md",
+      "blob": "https://github.com/huaizhuanghub/dsh-persona-repository/blob/main/personas/hena070910-eng/aliya.md",
+      "raw": "https://raw.githubusercontent.com/huaizhuanghub/dsh-persona-repository/main/personas/hena070910-eng/aliya.md"
     },
     {
       "id": "huaizhuanghub/acha",
